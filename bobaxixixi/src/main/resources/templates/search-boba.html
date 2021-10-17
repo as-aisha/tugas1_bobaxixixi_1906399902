@@ -24,8 +24,8 @@
                                     <label for="boba" style="font-weight: bold">Boba Name:</label>
                                     <select id="boba" name="boba" class="form-control">
                                         <option hidden>--- Select Boba Tea Name ---</option>
-                                        <option th:each="bobaEx : ${listBobaExist}"
-                                                th:value="${bobaEx.idBobaTea}"
+                                        <option th:each="bobaEx : ${listBoba}"
+                                                th:value="${bobaEx.namaVarianBobaTea}"
                                                 th:text="${bobaEx.namaVarianBobaTea}">
                                         </option>
                                     </select>
@@ -34,14 +34,14 @@
                                     <label for="topping" style="font-weight: bold">Topping Name:</label>
                                     <select id="topping" name="topping" class="form-control">
                                         <option hidden>--- Select Topping Name ---</option>
-                                        <option th:each="toppingEx : ${listToppingExist}"
-                                                th:value="${toppingEx.idTopping}"
+                                        <option th:each="toppingEx : ${listTopping}"
+                                                th:value="${toppingEx.namaTopping}"
                                                 th:text="${toppingEx.namaTopping}">
                                         </option>
                                     </select>
                                 </td>
                                 <td style="text-align: left; padding-left: 5px">
-                                    <button class="mx-1 btn" style="color: white; background-color: #62433E; width: 100px" type="submit">Search</button>
+                                    <button class="mx-1 btn" style="color: white; background-color: #62433E; width: 100px" href="/search">Search</button>
                                 </td>
                             </tr>
                             </tbody>
@@ -63,25 +63,19 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="bobaRes, iterationStatus : ${listBobaByBobaTopping}" style="text-align: center">
+                    <tr th:each="storeBoba, iterationStatus : ${listSearchedBobaTopping}" style="text-align: center">
                         <td th:text="${iterationStatus.count}"></td>
-                        <td th:text="'Rp' + ${bobaRes.hargaBobaTea}"></td>
-                        <td th:if="${bobaRes.size} == 0">S</td>
-                        <td th:if="${bobaRes.size} == 1">M</td>
-                        <td th:if="${bobaRes.size} == 2">L</td>
-                        <td th:if="${bobaRes.iceLevel} == 0">Less</td>
-                        <td th:if="${bobaRes.iceLevel} == 1">Normal</td>
-                        <td th:if="${bobaRes.iceLevel} == 2">Extra</td>
-                        <td th:if="${bobaRes.sugarLevel} == 0">Less</td>
-                        <td th:if="${bobaRes.sugarLevel} == 1">Normal</td>
-                        <td th:if="${bobaRes.sugarLevel} == 2">Extra</td>
-                        <td th:text="${bobaRes.store}"></td>
-                        <td th:if="${bobaRes.topping} == null">No Topping</td>
-                        <td>
-                            <a class="btn btn-sm btn-info" th:href="@{/boba/} + ${boba.idBobaTea}">Assign</a>
-                            <a class="btn btn-sm btn-warning" th:href="@{/boba/update/} + ${boba.idBobaTea}">Update</a>
-                            <a class="btn btn-sm btn-danger" th:href="@{/boba/delete/} + ${boba.idBobaTea}">Delete</a>
-                        </td>
+                        <td th:text="'Rp' + ${storeBoba.boba_tea.hargaBobaTea}"></td>
+                        <td th:if="${storeBoba.boba_tea.size} == 0">S</td>
+                        <td th:if="${storeBoba.boba_tea.size} == 1">M</td>
+                        <td th:if="${storeBoba.boba_tea.size} == 2">L</td>
+                        <td th:if="${storeBoba.boba_tea.iceLevel} == 0">Less</td>
+                        <td th:if="${storeBoba.boba_tea.iceLevel} == 1">Normal</td>
+                        <td th:if="${storeBoba.boba_tea.iceLevel} == 2">Extra</td>
+                        <td th:if="${storeBoba.boba_tea.sugarLevel} == 0">Less</td>
+                        <td th:if="${storeBoba.boba_tea.sugarLevel} == 1">Normal</td>
+                        <td th:if="${storeBoba.boba_tea.sugarLevel} == 2">Extra</td>
+                        <td th:text="${storeBoba.store.namaStore}"></td>
                     </tr>
                     </tbody>
                 </table>

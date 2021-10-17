@@ -76,7 +76,16 @@ public class BobaTeaServiceImpl implements BobaTeaService{
     public List<BobaTeaModel> getBobaTeaList() {    return bobaTeaDB.findAll();    }
 
     @Override
-    public List<StoreBobaTeaModel> getListAvailableStoreBoba(BobaTeaModel boba, ToppingModel topping) {
+    public BobaTeaModel getBobaByNamaBoba(String namaVarianBobaTea) {
+        Optional<BobaTeaModel> boba = bobaTeaDB.findByNamaVarianBobaTea(namaVarianBobaTea);
+        if (boba.isPresent()) {
+            return boba.get();
+        }
+        return null;
+    }
+
+    @Override
+    public List<StoreBobaTeaModel> searchBobaByTopping(String namaBoba, String namaTopping) {
 
         List<StoreBobaTeaModel> listStoreBoba = storeBobaTeaDB.findAll();
         List<StoreBobaTeaModel> listAvailableStoreBoba = new ArrayList();
@@ -86,7 +95,9 @@ public class BobaTeaServiceImpl implements BobaTeaService{
             //Kalau store buka
             if (now.isAfter(sb.getStore().getOpenHour()) && now.isBefore(sb.getStore().getCloseHour())) {
                 //Kalau sesuai dengan query boba dan topping yang dicari
-                if (sb.getBoba_tea().getIdBobaTea().equals(boba.getIdBobaTea()) && sb.getBoba_tea().getTopping().getIdTopping().equals(topping.getIdTopping())) {
+                System.out.println("kalau toko buka");
+                if (sb.getBoba_tea().getNamaVarianBobaTea().equals(namaBoba) && sb.getBoba_tea().getTopping().getNamaTopping().equals(namaTopping)) {
+                    System.out.println("masuk sini");
                     listAvailableStoreBoba.add(sb);
                 }
             }
@@ -99,4 +110,6 @@ public class BobaTeaServiceImpl implements BobaTeaService{
             return null;
         }
     }
+
+
 }

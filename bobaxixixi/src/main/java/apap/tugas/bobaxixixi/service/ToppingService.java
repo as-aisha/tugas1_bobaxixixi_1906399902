@@ -12,4 +12,6 @@ public interface ToppingService {
 
     //Method untuk mendapatkan data sebuah Topping berdasarkan id topping
     ToppingModel getToppingByIdTopping(Long idTopping);
+
+    ToppingModel getToppingByNamaTopping(String namaTopping);
 }

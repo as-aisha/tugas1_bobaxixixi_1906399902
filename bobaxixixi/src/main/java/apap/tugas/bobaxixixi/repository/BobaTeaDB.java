@@ -9,4 +9,5 @@ import java.util.Optional;
 @Repository
 public interface BobaTeaDB extends JpaRepository<BobaTeaModel, Long> {
     Optional<BobaTeaModel> findByIdBobaTea(Long idBobaTea);
+    Optional<BobaTeaModel> findByNamaVarianBobaTea(String namaVarianBobaTea);
 }

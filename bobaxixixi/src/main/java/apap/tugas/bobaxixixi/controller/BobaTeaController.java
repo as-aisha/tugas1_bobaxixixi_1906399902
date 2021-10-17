@@ -111,6 +111,7 @@ public class BobaTeaController {
         List<StoreModel> listStore = storeService.getStoreList();
         storeBobaTeaService.resetStoreBobaTeaList(boba);
         model.addAttribute("boba", boba);
+        model.addAttribute("namaBoba", boba.getNamaVarianBobaTea());
         model.addAttribute("listStore", listStore);
 
         return "form-assign-store";

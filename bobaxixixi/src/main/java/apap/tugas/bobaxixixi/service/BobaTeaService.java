@@ -22,10 +22,12 @@ public interface BobaTeaService {
     List<BobaTeaModel> getBobaTeaList();
 
     //Method untuk mendapatkan daftar pencarian Boba Tea berdasarkan varian boba dan topping
-    List<StoreBobaTeaModel> getListAvailableStoreBoba(BobaTeaModel boba, ToppingModel topping);
+    List<StoreBobaTeaModel> searchBobaByTopping(String namaVarianBobaTea, String namaTopping);
 
     //Method untuk mendapatkan data sebuah Boba Tea berdasarkan id Boba Tea
     BobaTeaModel getBobaByIdBobaTea(Long idBobaTea);
+
+    BobaTeaModel getBobaByNamaBoba(String namaVarianBobaTea);
 
 //    //Method untuk meng-generate store code
 //    String generateStoreCode(StoreModel store);

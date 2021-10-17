@@ -28,4 +28,13 @@ public class ToppingServiceImpl implements ToppingService {
         }
         return null;
     }
+
+    @Override
+    public ToppingModel getToppingByNamaTopping (String namaTopping) {
+        Optional<ToppingModel> topping = toppingDB.findByNamaTopping(namaTopping);
+        if (topping.isPresent()) {
+            return topping.get();
+        }
+        return null;
+    }
 }
