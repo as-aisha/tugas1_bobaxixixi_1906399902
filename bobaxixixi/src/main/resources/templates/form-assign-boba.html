@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title> BOBAXIXIXI </title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container rounded w-75 p-5 my-3">
+    <div class="card m-4 p-4 border border-warning">
+        <div class="card-body">
+            <div class="justify-content-center">
+                <h1 class="font-weight-bold" style="color: #62433E; text-align: center" th:text="'Add Boba to ' + ${store.namaStore}"></h1>
+                <br> <br>
+
+                <div th:if="*{listBoba.size()  != 0}">
+                    <form th:action="@{'/store/' + ${store.idStore} + '/assign-boba/'}" th:object="${store}" method="POST">
+                        <input type="hidden" th:field="${store.idStore}">
+
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>   </th>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th>Size</th>
+                                    <th>Ice</th>
+                                    <th>Sugar</th>
+                                    <th>Topping</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="boba : ${listBoba}">
+                                    <td>
+                                        <input class="form-check-input" type="checkbox"
+                                               th:name="bobaChecked"
+                                               th:value="${boba.idBobaTea}">
+                                    </td>
+                                    <td th:text="${boba.namaVarianBobaTea}"></td>
+                                    <td th:text="'Rp' + ${boba.hargaBobaTea}"></td>
+                                    <td th:if="${boba.size} == 0">S</td>
+                                    <td th:if="${boba.size} == 1">M</td>
+                                    <td th:if="${boba.size} == 2">L</td>
+                                    <td th:if="${boba.iceLevel} == 0">Less</td>
+                                    <td th:if="${boba.iceLevel} == 1">Normal</td>
+                                    <td th:if="${boba.iceLevel} == 2">Extra</td>
+                                    <td th:if="${boba.sugarLevel} == 0">Less</td>
+                                    <td th:if="${boba.sugarLevel} == 1">Normal</td>
+                                    <td th:if="${boba.sugarLevel} == 2">Extra</td>
+                                    <td th:if="${boba.topping} != null" th:text="${boba.topping.namaTopping}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <table>
+                                <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td style="text-align: right; padding-right: 15px"><a class="mx-1 btn btn-outline-secondary" style="width: 100px" th:href="@{/store/} + ${store.idStore}">Cancel</a></td>
+                                    <td style="text-align: left; padding-left: 15px"><button class="mx-1 btn" style="color: white; background-color: #62433E; width: 100px" type="submit">Confirm</button></td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                    </form>
+                </div>
+                <div th:unless="*{listBoba.size() != 0}">
+                    <h2 th:text="'No boba tea available.'"></h2>
+                    <br> <br> <br>
+                    <a class="text-warning" th:href="@{/store/} + ${store.idStore}">⟵ Back to Store Detail</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

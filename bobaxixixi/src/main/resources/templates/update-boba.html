@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title> BOBAXIXIXI </title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container-sm rounded w-75 p-5 my-5">
+    <div class="card m-4 p-4 border border-warning">
+        <div class="card-body">
+            <div class="justify-content-center" style="text-align: center">
+                <h2 style="color: #62433E" th:text="${namaBoba} + ' successfully updated!'"></h2>
+                <br>
+                <a class="text-warning" href="/store">⟵ Back to List of Store</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

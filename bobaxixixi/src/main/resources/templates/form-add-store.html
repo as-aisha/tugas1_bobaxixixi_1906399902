@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title> BOBAXIXIXI </title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container rounded w-75 p-5 my-3">
+    <div class="card m-4 p-4 border border-warning">
+        <div class="card-body">
+            <div class="justify-content-center">
+                <h1 class="font-weight-bold" style="color: #62433E; text-align: center">Add New Store</h1>
+                <br> <br>
+                <form th:action="@{/store/add}" th:object="${store}" method="POST">
+                    <table style="width: 100%">
+                        <tbody>
+                        <tr>
+                            <td style="padding-right: 25px; padding-bottom: 20px">
+                                <label for="name" style="font-weight: bold">Store Name</label>
+                                <input required id="name" class="form-control" type="text" name="namaStore" th:value="*{namaStore}" placeholder="Enter store name"/>
+                            </td>
+                            <td style="padding-left: 25px; padding-bottom: 20px">
+                                <label for="manager" style="font-weight: bold">Manager</label>
+                                <select id="manager" name="manager" class="form-control">
+                                    <option hidden>--- Manager ---</option>
+                                    <option th:each="manager : ${listManager}"
+                                            th:value="${manager.idManager}"
+                                            th:text="${manager.namaManager}" name="manager">
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="padding-bottom: 20px">
+                                <label for="address" style="font-weight: bold">Address</label>
+                                <input required id="address" class="form-control" type="text" name="alamatStore" th:value="*{alamatStore}" placeholder="Enter store address" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-right: 25px; padding-bottom: 40px">
+                                <label for="openHour" style="font-weight: bold">Open Hour</label>
+                                <input required id="openHour" class="form-control" type="time" name="openHour" th:value="*{openHour}"/>
+                            </td>
+                            <td style="padding-left: 25px; padding-bottom: 40px">
+                                <label for="closeHour" style="font-weight: bold">Close Hour</label>
+                                <input required id="closeHour" class="form-control" type="time" name="closeHour" th:value="*{closeHour}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right; padding-right: 15px"><a class="mx-1 btn btn-outline-secondary" style="width: 100px" href="/store">Cancel</a></td>
+                            <td style="text-align: left; padding-left: 15px"><button class="mx-1 btn" style="color: white; background-color: #62433E; width: 100px" type="submit">Save</button></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

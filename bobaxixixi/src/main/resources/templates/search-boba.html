@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title> BOBAXIXIXI </title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container-sm rounded w-75 p-5 my-3">
+    <div class="card m-4 p-4 border border-warning">
+        <div class="card-body">
+            <div class="justify-content-center align-content-center">
+
+                <form th:object="${boba}" th:action="@{/search}" method="GET">
+                    <div th:object="${topping}" >
+                        <table style="width: 80%">
+                            <tbody>
+                            <tr>
+                                <td style="padding-right: 5px; padding-bottom: 20px">
+                                    <label for="boba" style="font-weight: bold">Boba Name:</label>
+                                    <select id="boba" name="boba" class="form-control">
+                                        <option hidden>--- Select Boba Tea Name ---</option>
+                                        <option th:each="bobaEx : ${listBobaExist}"
+                                                th:value="${bobaEx.idBobaTea}"
+                                                th:text="${bobaEx.namaVarianBobaTea}">
+                                        </option>
+                                    </select>
+                                </td>
+                                <td style="padding-left: 5px; padding-right: 5px; padding-bottom: 20px">
+                                    <label for="topping" style="font-weight: bold">Topping Name:</label>
+                                    <select id="topping" name="topping" class="form-control">
+                                        <option hidden>--- Select Topping Name ---</option>
+                                        <option th:each="toppingEx : ${listToppingExist}"
+                                                th:value="${toppingEx.idTopping}"
+                                                th:text="${toppingEx.namaTopping}">
+                                        </option>
+                                    </select>
+                                </td>
+                                <td style="text-align: left; padding-left: 5px">
+                                    <button class="mx-1 btn" style="color: white; background-color: #62433E; width: 100px" type="submit">Search</button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+
+                <br> <br>
+
+                <table class="table table-striped">
+                    <thead>
+                    <tr class="text-white" style="text-align: center; background-color: #62433E" >
+                        <th>No</th>
+                        <th>Price</th>
+                        <th>Size</th>
+                        <th>Ice</th>
+                        <th>Sugar</th>
+                        <th>Store Name</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="bobaRes, iterationStatus : ${listBobaByBobaTopping}" style="text-align: center">
+                        <td th:text="${iterationStatus.count}"></td>
+                        <td th:text="'Rp' + ${bobaRes.hargaBobaTea}"></td>
+                        <td th:if="${bobaRes.size} == 0">S</td>
+                        <td th:if="${bobaRes.size} == 1">M</td>
+                        <td th:if="${bobaRes.size} == 2">L</td>
+                        <td th:if="${bobaRes.iceLevel} == 0">Less</td>
+                        <td th:if="${bobaRes.iceLevel} == 1">Normal</td>
+                        <td th:if="${bobaRes.iceLevel} == 2">Extra</td>
+                        <td th:if="${bobaRes.sugarLevel} == 0">Less</td>
+                        <td th:if="${bobaRes.sugarLevel} == 1">Normal</td>
+                        <td th:if="${bobaRes.sugarLevel} == 2">Extra</td>
+                        <td th:text="${bobaRes.store}"></td>
+                        <td th:if="${bobaRes.topping} == null">No Topping</td>
+                        <td>
+                            <a class="btn btn-sm btn-info" th:href="@{/boba/} + ${boba.idBobaTea}">Assign</a>
+                            <a class="btn btn-sm btn-warning" th:href="@{/boba/update/} + ${boba.idBobaTea}">Update</a>
+                            <a class="btn btn-sm btn-danger" th:href="@{/boba/delete/} + ${boba.idBobaTea}">Delete</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

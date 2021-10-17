@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title> BOBAXIXIXI </title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container rounded w-75 p-5 my-3">
+    <div class="card m-4 p-4 border border-warning">
+        <div class="card-body">
+            <div class="justify-content-center">
+                <h1 class="font-weight-bold" style="color: #62433E; text-align: center">Update Boba Tea</h1>
+                <br> <br>
+                <form th:action="@{/boba/update}" th:object="${boba}" method="POST">
+                    <input type="hidden" th:field="*{idBobaTea}" />
+
+                    <table style="width: 100%">
+                        <tbody>
+                        <tr>
+                            <td colspan="2" style="padding-bottom: 20px">
+                                <label for="name" style="font-weight: bold">Boba Tea Name</label>
+                                <input required id="name" class="form-control" type="text" name="namaVarianBobaTea" th:value="*{namaVarianBobaTea}" placeholder="Enter boba tea name"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-right: 25px; padding-bottom: 20px">
+                                <label for="price" style="font-weight: bold">Price</label>
+                                <input required id="price" class="form-control" type="text" name="hargaBobaTea" th:value="*{hargaBobaTea}" placeholder="Enter boba tea price" />
+                            </td>
+                            <td style="padding-left: 25px; padding-bottom: 20px">
+                                <label for="size" style="font-weight: bold">Size</label>
+                                <select id="size" name="size" class="form-control">
+                                    <option value="10">--- Select Size ---</option>
+                                    <option value="0">S</option>
+                                    <option value="1">M</option>
+                                    <option value="2">L</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-right: 25px; padding-bottom: 20px">
+                                <label for="sugar" style="font-weight: bold">Sugar Level</label>
+                                <select id="sugar" name="sugarLevel" class="form-control">
+                                    <option value="10">--- Select a Sugar Level ---</option>
+                                    <option value="0">Less</option>
+                                    <option value="1">Normal</option>
+                                    <option value="2">Extra</option>
+                                </select>
+                            </td>
+                            <td style="padding-left: 25px; padding-bottom: 20px">
+                                <label for="ice" style="font-weight: bold">Ice Level</label>
+                                <select id="ice" name="iceLevel" class="form-control">
+                                    <option value="10">--- Select an Ice Level ---</option>
+                                    <option value="0">Less</option>
+                                    <option value="1">Normal</option>
+                                    <option value="2">Extra</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-right: 25px; padding-bottom: 40px">
+                                <label for="topping" style="font-weight: bold">Topping</label>
+                                <select id="topping" name="topping" class="form-control">
+                                    <option hidden>--- Select a Topping ---</option>
+                                    <option th:each="topping : ${listTopping}"
+                                            th:value="${topping.idTopping}"
+                                            th:text="${topping.namaTopping}" name="topping">
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right; padding-right: 15px"><a class="mx-1 btn btn-outline-secondary" style="width: 100px" href="/boba">Cancel</a></td>
+                            <td style="text-align: left; padding-left: 15px"><button class="mx-1 btn" style="color: white; background-color: #62433E; width: 100px" type="submit">Save</button></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title> BOBAXIXIXI </title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container rounded w-75 p-5 my-3">
+    <div class="card m-4 p-4 border border-warning">
+        <div class="card-body">
+            <div class="justify-content-center">
+                <h1 class="font-weight-bold" style="color: #62433E; text-align: center">Store Detail</h1>
+                <br> <br>
+                <table style="width: 80%; margin-left: auto; margin-right: auto;">
+                    <thead>
+                    <tr>
+                        <th style="width: 20%"></th>
+                        <th style="width: 40%"></th>
+                        <th style="width: 20%"></th>
+                        <th style="width: 20%"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><span style="font-weight: bold" th:text="'Store Name'"></span></td>
+                        <td style="padding-left: 0.75em"><span th:text="${store.namaStore}"></span></td>
+                        <td><span style="font-weight: bold; text-align: right" th:text="'Store Code'"></span></td>
+                        <td><span style="text-align: right" th:text="${store.storeCode}"></span></td>
+                    </tr>
+                    <tr>
+                        <td><span style="font-weight: bold" th:text="'Address'"></span></td>
+                        <td style="padding-left: 0.75em"><span th:text="${store.alamatStore}"></span></td>
+                    </tr>
+                    <tr>
+                        <td><span style="font-weight: bold" th:text="'Open Hour'"></span></td>
+                        <td style="padding-left: 0.75em"><span th:text="${store.openHour}"></span></td>
+                    </tr>
+                    <tr>
+                        <td><span style="font-weight: bold" th:text="'Close Hour'"></span></td>
+                        <td style="padding-left: 0.75em"><span th:text="${store.closeHour}"></span></td>
+                    </tr>
+                    <tr>
+                        <td><span style="font-weight: bold" th:text="'Manager'"></span></td>
+                        <td style="padding-left: 0.75em"><span th:text="${store.manager.namaManager}"></span></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <br> <br> <br>
+
+                <h3 class="font-weight-bold" style="color: #62433E; text-align: center">List of Boba Tea</h3>
+                <br>
+                <table class="table table-striped" style="width: 80%; margin-left: auto; margin-right: auto;">
+                    <thead>
+                    <tr class="text-white" style="text-align: center; background-color: #62433E">
+                        <th>No</th>
+                        <th>Name</th>
+                        <th>Topping</th>
+                        <th>Price</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="sb, iterationStatus : ${listStoreBobaTea}" style="text-align: center" >
+                        <td th:text="${iterationStatus.count}"></td>
+                        <td th:text="${sb.boba_tea.namaVarianBobaTea}"></td>
+                        <td th:if="${sb.boba_tea.topping} != null" th:text="${sb.boba_tea.topping.namaTopping}"></td>
+                        <td th:text="'Rp' + ${sb.boba_tea.hargaBobaTea}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <br>
+                <div class="justify-content-center" style="text-align: center">
+                    <a th:href="@{'/store/' + ${store.idStore} + '/assign-boba/'}" class="mx-2 btn" style="color: white; background-color: #EF974F">+ Add Boba to Store</a>
+                    <br> <br> <br>
+                    <a class="text-warning" href="/store">⟵ Back to List of Store</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

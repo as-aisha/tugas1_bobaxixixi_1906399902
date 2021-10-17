@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title> BOBAXIXIXI </title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<br><br>
+<div class="container-sm rounded w-75 p-5 my-5 text-white" style="background-color: #62433E">
+    <div class="d-flex justify-content-center">
+        <div class="m-4 font-weight-bold">
+            <h1>WELCOME TO BOBAXIXIXI!</h1>
+        </div>
+    </div>
+</div>
+<div class="container-sm w-50 ">
+    <br>
+    <h4 style="color: #62433E; text-align: center">List of Features:</h4>
+    <br>
+    <div class="d-flex justify-content-center">
+        <a type="button" th:href="@{/store}" class="mx-2 btn text-white font-weight-bold" style="background-color: #62433E; padding-left: 10px; padding-right: 10px; width: 25%">Store</a>
+        <a type="button" th:href="@{/boba}" class="mx-2 btn text-white font-weight-bold" style="background-color: #62433E; padding-left: 10px; padding-right: 10px; width: 25%">Boba Tea</a>
+        <a type="button" th:href="@{#}" class="mx-2 btn text-white font-weight-bold" style="background-color: #62433E; padding-left: 10px; padding-right: 10px; width: 25%">Search</a>
+        <a type="button" th:href="@{#}" class="mx-2 btn text-white font-weight-bold" style="background-color: #62433E; padding-left: 10px; padding-right: 10px; width: 25%">Filter</a>
+    </div>
+</div>
+
+</body>
+
+</html>

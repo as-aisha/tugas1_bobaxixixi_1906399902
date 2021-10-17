@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title> Home </title>
+    <head th:fragment="css">
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    </head>
+    <head th:fragment="js">
+        <script
+                src="https://code.jquery.com/jquery-3.4.1.min.js"
+                integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFIBw8HfCJo="
+                crossorigin="anonymous"
+        ></script>
+        <script src="https://getbootstrap.com/docs/4.1/assets/js/vendor/popper.min.js"></script>
+        <script th:src="@{/js/bootstrap.min.js}"></script>
+    </head>
+</head>
+
+<body>
+<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light" style="background-color: #62433E">
+    <a class="navbar-brand font-weight-bold text-white" th:href="@{/}">BOBAXIXIXI</a>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+            <li>
+                <a class="nav-item nav-link font-weight-normal" style="color: white" th:classappend="${#httpServletRequest.getRequestURI() == '/store' ? 'font-weight-bold':''}" th:href="@{/store}">
+                    Store<span class="sr-only"></span>
+                </a>
+            </li>
+            <li>
+                <a class="nav-item nav-link font-weight-normal" style="color: white" th:classappend="${#httpServletRequest.getRequestURI() == '/boba' ? 'font-weight-bold':''}" th:href="@{/boba}">
+                    Boba Tea<span class="sr-only"></span>
+                </a>
+            </li>
+            <li>
+                <a class="nav-item nav-link font-weight-normal" style="color: white" th:classappend="${#httpServletRequest.getRequestURI() == '/search' ? 'font-weight-bold':''}" th:href="@{#}">
+                    Search<span class="sr-only"></span>
+                </a>
+            </li>
+            <li>
+                <a class="nav-item nav-link font-weight-normal" style="color: white" th:classappend="${#httpServletRequest.getRequestURI() == '/filter' ? 'font-weight-bold':''}" th:href="@{#}">
+                    Filter<span class="sr-only"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+    >
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+</nav>
+
+</body>
+</html>
+
